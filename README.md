@@ -1,1 +1,1 @@
-# a6
+all materials for hw6. 
