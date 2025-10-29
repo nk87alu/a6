@@ -21,16 +21,17 @@ r2 = np.where(r2<noHardCodeHere,noHardCodeHere,r2)
 
 V = (q1/(4*np.pi*e_o*r1))+(q2/(4*np.pi*e_o*r2))
 
-Ex = -(V[2:,: ]-V[0:-2, :])/(2*dx)
-Ey = -(V[:,2:]-V[:, 0:-2])/(2*dx)
+Ex = -(V[:,2:]-V[:,:-2])/(2*dx)
+Ey = -(V[2:,:]-V[:-2:])/(2*dx)
 
 plt.contourf(X,Y,V,levels=60, cmap="bwr")
 plt.colorbar()
 
 Xnew = X[1:-1, 1:-1]
 Ynew = Y[1:-1, 1:-1]
-ExNew = Ex[:, 1:-1 ]
-EyNew = Ey[1:-1 , :]
+ExNew = Ex[:-2,:]
+EyNew = Ey[:,:-2]
 plt.streamplot(Xnew[0,:], Ynew[:,0], ExNew, EyNew,color='black', density=.75, linewidth=.33)
 
-plt.savefig('potentialANDefield.png')                                          plt.show()
+plt.savefig('potentialANDefield.png')                                                               
+plt.show()
